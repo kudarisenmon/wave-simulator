@@ -3,10 +3,12 @@ var t = 0; // 時間
 var a1;
 var t1;
 var l1;
+var s1 = 1;
 // 左向きの波(y2)
 var a2;
 var t2;
 var l2;
+var s2 = 1;
 
 var autoSwitch = false;
 var associated = false;
@@ -73,13 +75,13 @@ function auto() {
 
 function reset() {
 	autoSwitch = false;
-	t = 0;
 	a1 = $('#a1').val();
 	t1 = $('#t1').val();
 	l1 = $('#l1').val();
 	a2 = $('#a2').val();
 	t2 = $('#t2').val();
 	l2 = $('#l2').val();
+	t = 0;
 	draw();
 }
 
@@ -178,6 +180,13 @@ $(function() {
 				setTimeout("auto()", 30);
 			}
 		}
+	});
+	$("#phase").change(function() {
+		var phase = $('#phase option:selected').val().split(":");
+		console.log(phase);
+		s1 = phase[0];
+		s2 = phase[1];
+		reset();
 	});
 	$("#slider").draggable();
 	reset();
